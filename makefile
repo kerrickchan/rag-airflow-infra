@@ -1,7 +1,15 @@
-env:
+.ONESHELL:
+SHELL = /bin/zsh
+CONDA_ACTIVATE = source $$(conda info --base)/etc/profile.d/conda.sh
+
+setup: setup-airflow setup-docker setup-conda
+
+setup-airflow:
 	mkdir -p ./dags ./logs ./plugins ./config
 	echo -e AIRFLOW_UID=$(id -u) > .env
 
-setup:
+setup-docker:
 	docker compose up -d
-	docker exec -rm -i rag_agent psql -u root -ppassword <mydb> < sqls/agent-database.sql
+
+setup-conda:
+	conda create --name rag_agent python=3.11 -y
