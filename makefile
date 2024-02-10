@@ -17,3 +17,4 @@ setup-conda:
 setup-python:
 	$(CONDA_ACTIVATE) rag_agent
 	pip install -r requirements.txt
+	scripts/install_server.sh
