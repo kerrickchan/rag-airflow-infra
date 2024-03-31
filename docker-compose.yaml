@@ -82,17 +82,15 @@ x-airflow-common:
     postgres:
       condition: service_healthy
 
-name: 'rag_agent'
-
 services:
   postgres:
     extends:
-      file: docker-compose-postgres.yml
+      file: ./docker/docker-compose-postgres.yml
       service: postgres
 
   redis:
     extends:
-      file: docker-compose-redis.yml
+      file: ./docker/docker-compose-redis.yml
       service: redis
 
   airflow-webserver:
